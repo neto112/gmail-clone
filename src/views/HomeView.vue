@@ -3,7 +3,6 @@
     <div class="border-b">
       <div class="flex items-center justify-between px-4 my-3">
         <IconComponent
-          @click="deleteSelected"
           class="-m-2 -ml-2.5"
           iconString="trash"
           :iconSize="19"
