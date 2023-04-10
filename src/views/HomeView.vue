@@ -13,7 +13,7 @@
         <div class="text-xs text-gray-500">1-50 of 153</div>
       </div>
     </div>
-    <!-- <div v-for="email in userStore.emails" :key="email">
+    <div v-for="email in userStore.emails" :key="email">
       <MessageRow
         :id="email.id"
         :from="email.firstName + ' ' + email.lastName"
@@ -21,27 +21,20 @@
         :body="email.body"
         :time="email.createdAt"
         :hasViewed="email.hasViewed"
-        @selectedId="selectedId"
       />
-    </div> -->
-    <div>
-      <MessageRow
-        from="cristianorneto@gmail.com"
-        subject="Test row 1"
-        body="this is the body text"
-        time="Jun 20 15:15"
-      ></MessageRow>
-      <MessageRow
-        from="cristianorneto@gmail.com"
-        subject="Test row 1"
-        body="this is the body text"
-        time="Jun 20 15:15"
-      ></MessageRow>
+        <!-- @selectedId="selectedId" -->
     </div>
   </div>
 </template>
 
 <script setup>
+import { onMounted } from "vue";
 import IconComponent from "@/components/IconComponent.vue";
 import MessageRow from "@/components/MessageRow.vue";
+import { useUserStore } from "@/store/user-store";
+const userStore = useUserStore();
+
+onMounted(() => {
+  userStore.getEmailsByEmailAddress();
+});
 </script>

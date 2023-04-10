@@ -65,16 +65,16 @@
         </div>
 
         <router-link to="/email">
-        <div
-          class="flex side-menu-item justify-between px-6 py-1.5 bg-blue-100 rounded-r-full"
-        >
-          <div class="flex items-center">
-            <InboxIcon :size="17" />
-            <div class="text-sm pl-4 font-semibold">Inbox</div>
-          </div>
+          <div
+            class="flex side-menu-item justify-between px-6 py-1.5 bg-blue-100 rounded-r-full"
+          >
+            <div class="flex items-center">
+              <InboxIcon :size="17" />
+              <div class="text-sm pl-4 font-semibold">Inbox</div>
+            </div>
 
-          <div class="text-xs font-semibold">userStore.emails.length</div>
-        </div>
+            <div class="text-xs font-semibold">userStore.emails.length</div>
+          </div>
         </router-link>
         <div class="flex side-menu-item justify-between px-6 py-1.5">
           <div class="flex items-center">
@@ -179,8 +179,8 @@
     </div>
 
     <div class="p-4 mt-5">
-        <!-- @click="sendEmail" -->
       <button
+        @click="sendEmail"
         class="bg-blue-700 hover:bg-blue-600 text-white text-sm font-bold py-2 px-4 rounded-full"
       >
         Send message
@@ -203,10 +203,21 @@ import FileOutlineIcon from "vue-material-design-icons/FileOutline.vue";
 import PlusIcon from "vue-material-design-icons/Plus.vue";
 import CloseIcon from "vue-material-design-icons/Close.vue";
 
+import { useUserStore } from "@/store/user-store";
+const userStore = useUserStore();
+
 let newMessageOpen = ref(false);
 let toEmail = ref("");
 let subject = ref("");
 let body = ref("");
+
+const sendEmail = async () => {
+  await userStore.sendEmail({
+    toEmail: toEmail.value,
+    subject: subject.value,
+    body: body.value,
+  });
+};
 </script>
 
 <style lang="scss">

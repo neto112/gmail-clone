@@ -59,7 +59,7 @@ const props = defineProps({
   time: String,
   hasViewed: Boolean,
 });
-const { id, from, subject, body, time } = toRefs(props);
+const { id, from, subject, body, time, hasViewed } = toRefs(props);
 </script>
 
 <style lang="scss">

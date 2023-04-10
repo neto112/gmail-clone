@@ -23,7 +23,7 @@ const routes = [
         component: HomeView
       },
       {
-        path: 'message',
+        path: 'message/:id',
         component: MessageView
       }
     ]
